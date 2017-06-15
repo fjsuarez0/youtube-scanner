@@ -4,6 +4,7 @@
   "description": "youtube-scanner",
   "main": "app.js",
   "scripts": {
+		"dev": "node-dev app.js",
 		"start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
