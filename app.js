@@ -4,7 +4,7 @@ const exphbs = require("express-handlebars")
 const port = process.env.PORT || 8989
 const google = require("googleapis")
 const path = require("path")
-const OAuth2 = google.oauth.0Auth2
+const OAuth2 = google.auth.OAuth2
 
 const oauthClient = new OAuth ({
 	CLIENT_ID: "808472990698-rlebin6e11p5arb731hcdboen0erlbp5.apps.googleusercontent.com",
