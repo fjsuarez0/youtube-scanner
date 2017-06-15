@@ -4,7 +4,13 @@ const exphbs = require("express-handlebars")
 const port = process.env.PORT || 8989
 const google = require("googleapis")
 const path = require("path")
-
+const google = require("googleapis")
+const OAuth2 = google.oauth.0Auth2
+ 
+const oauthClient = new OAuth ({
+	
+})
+						 
 app.engine('.hbs', exphbs({  
   defaultLayout: 'main',
   extname: '.hbs',
@@ -13,10 +19,8 @@ app.engine('.hbs', exphbs({
 
 app.set('view engine', '.hbs')  
 
-app.set('views', path.join(__dirname, 'views')) 
-
-// Test vim-fugitive 
-// 
+app.set('views', path.join(__dirname, 'views'))  
+ 
 app.get('/', (req, res) => {  
   res.render('home', {
     name: 'John'
