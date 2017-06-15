@@ -1,0 +1,26 @@
+{
+  "name": "youtube-scanner",
+  "version": "1.0.0",
+  "description": "youtube-scanner",
+  "main": "app.js",
+  "scripts": {
+		"start": "node-dev app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fjsuarez0/youtube-scanner.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fjsuarez0/youtube-scanner/issues"
+  },
+  "homepage": "https://github.com/fjsuarez0/youtube-scanner#readme",
+  "dependencies": {
+    "express": "^4.15.3",
+    "express-handlebars": "^3.0.0",
+    "googleapis": "^19.0.0"
+  }
+}
