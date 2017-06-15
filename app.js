@@ -1,7 +1,7 @@
 const express = require("express")
 const app = express()
 const exphbs = require("express-handlebars")
-const port = 8989 || process.env.PORT
+const port = process.env.PORT || 8989
 const google = require("googleapis")
 const path = require("path")
 
