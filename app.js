@@ -39,6 +39,10 @@ app.get("/privacy-policy", (req, res) => {
 	res.render("privacypolicy")
 })
 
+app.get("/terms-of-service", (req, res) => {
+	res.render("terms-of-service")
+})
+
 app.listen(port, () => {
 	console.log(`Servidor corriendo en el puerto ${port}`)
 })
