@@ -6,6 +6,8 @@ const google = require("googleapis")
 const path = require("path")
 const OAuth2 = google.auth.OAuth2
 
+
+
 const oauth2Client = new OAuth2 ({
 	CLIENT_ID: "808472990698-rlebin6e11p5arb731hcdboen0erlbp5.apps.googleusercontent.com",
 	CLIENT_SECRET: "HQ0FjS4QTPbaHciO6nQIE0sC"
@@ -14,7 +16,9 @@ const oauth2Client = new OAuth2 ({
 google.options({
 	auth: oauth2Client
 })
-	
+
+app.use(express.static("public"))
+
 app.engine('.hbs', exphbs({  
 	defaultLayout: 'main',
   extname: '.hbs',
