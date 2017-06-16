@@ -1,3 +1,4 @@
+ 
     /**
      * Function called when clicking the Login/Logout button.
      */
@@ -53,10 +54,16 @@
      *  - firebase.auth().onAuthStateChanged: This listener is called when the user is signed in or
      *    out, and that is where we update the UI.
      */
-		function singOut(){
-		  firebase.auth().signOut();		
+		function signOut(){
+			firebase.auth().onAuthStateChanged(function(user) {
+				if(user) {
+					firebase.auth().signOut();
+				} else {
+					return  
+				}			
+			})
 		}
-		function initApp() {
+    function initApp() {
       // Listening for auth state changes.
       // [START authstatelistener]
       firebase.auth().onAuthStateChanged(function(user) {
@@ -70,36 +77,34 @@
           var uid = user.uid;
           var providerData = user.providerData;
           // [START_EXCLUDE]
-//        document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
-	        document.getElementById('name').textContent = displayName;	
-	        document.getElementById('quickstart-sign-in').disabled = false;
-	        document.getElementById('quickstart-sign-out').disabled = false;
-			
-//        document.getElementById('quickstart-sign-in').textContent = 'Sign out';
-//        document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
+          document.getElementById('name').textContent = displayName;
+	        document.getElementById('quickstart-sign-in').disabled = true;
+				
+					/*					document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+          document.getElementById('quickstart-sign-in').textContent = 'Sign out';
+          document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');		*/
           // [END_EXCLUDE]
         } else {
           // User is signed out.
           // [START_EXCLUDE]
 	        document.getElementById('quickstart-sign-out').disabled = true;
-					/*
- * 				document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
+
+					/*				
+					document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
           document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';
           document.getElementById('quickstart-account-details').textContent = 'null';
-          document.getElementById('quickstart-oauthtoken').textContent = 'null';
+          document.getElementById('quickstart-oauthtoken').textContent = 'null';		*/
           // [END_EXCLUDE]
-*/					//
         }
         // [START_EXCLUDE]
-        document.getElementById('quickstart-sign-in').disabled = false;
+//        document.getElementById('quickstart-sign-in').disabled = false;
         // [END_EXCLUDE]
       });
       // [END authstatelistener]
       document.getElementById('quickstart-sign-in').addEventListener('click', toggleSignIn, false);
-	    document.getElementById('quickstart-sign-out').addEventListener('click', singOut, false);
+	    document.getElementById('quickstart-sign-out').addEventListener('click', signOut, false);
 		
     }
     window.onload = function() {
-      initApp();
-    };
-  
+      initApp();  
+ };
