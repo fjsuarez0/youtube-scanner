@@ -9,8 +9,11 @@
         var provider = new firebase.auth.GoogleAuthProvider();
         // [END createprovider]
         // [START addscopes]
-        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-        // [END addscopes]
+//        provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
+        provider.addScope('https://www.googleapis.com/auth/youtube.readonly');
+        provider.addScope('https://www.googleapis.com/auth/yt-analytics.readonly');
+			
+				// [END addscopes]
         // [START signin]
         firebase.auth().signInWithPopup(provider).then(function(result) {
           // This gives you a Google Access Token. You can use it to access the Google API.
@@ -18,7 +21,7 @@
           // The signed-in user info.
           var user = result.user;
           // [START_EXCLUDE]
-          document.getElementById('quickstart-oauthtoken').textContent = token;
+//          document.getElementById('quickstart-oauthtoken').textContent = token;
           // [END_EXCLUDE]
         }).catch(function(error) {
           // Handle Errors here.
@@ -57,12 +60,14 @@
 		function signOut(){
 			firebase.auth().onAuthStateChanged(function(user) {
 				if(user) {
-					firebase.auth().signOut();
+					firebase.auth().signOut()										
 				} else {
 					return  
 				}			
 			})
 		}
+
+
     function initApp() {
       // Listening for auth state changes.
       // [START authstatelistener]
@@ -78,17 +83,19 @@
           var providerData = user.providerData;
           // [START_EXCLUDE]
           document.getElementById('name').textContent = displayName;
-	        document.getElementById('quickstart-sign-in').disabled = true;
-				
-					/*					document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
+					//
+	//				document.getElementById('quickstart-sign-in').disabled = true;
+					console.log("Hello World")
+					/*	
+					document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
           document.getElementById('quickstart-sign-in').textContent = 'Sign out';
           document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');		*/
           // [END_EXCLUDE]
         } else {
           // User is signed out.
           // [START_EXCLUDE]
-	        document.getElementById('quickstart-sign-out').disabled = true;
-
+//	        document.getElementById('quickstart-sign-out').disabled = false;
+					console.log("Hello Out")
 					/*				
 					document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
           document.getElementById('quickstart-sign-in').textContent = 'Sign in with Google';

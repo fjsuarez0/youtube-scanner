@@ -7,7 +7,6 @@ const path = require("path")
 const OAuth2 = google.auth.OAuth2
 
 
-
 const oauth2Client = new OAuth2 ({
 	CLIENT_ID: "808472990698-rlebin6e11p5arb731hcdboen0erlbp5.apps.googleusercontent.com",
 	CLIENT_SECRET: "HQ0FjS4QTPbaHciO6nQIE0sC"
@@ -33,6 +32,10 @@ app.get('/', (req, res) => {
   res.render('home', {
     name: 'John'
   })
+})
+
+app.get("/signCredentials", (req, res) => {
+	res.render("signCredentials")
 })
 
 app.get("/privacy-policy", (req, res) => {
