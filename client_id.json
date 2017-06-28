@@ -1,0 +1,11 @@
+{ "web":
+	{ "client_id":"318816173913-v5tikiltl1m3dehq3smecjrtekmrbcih.apps.googleusercontent.com",
+		"project_id":"youtube-scanner-170911",
+		"auth_uri":"https://accounts.google.com/o/oauth2/auth",
+		"token_uri":"https://accounts.google.com/o/oauth2/token",
+		"auth_provider_x509_cert_url":"https://www.googleapis.com/oauth2/v1/certs",
+		"client_secret":"QCp_R1zsR9HP39UwE1KpVGm1",
+		"redirect_uris":["https://youtube-scanner.herokuapp.com/oauth2callback"],
+		"javascript_origins":["https://youtube-scanner.herokuapp.com"]
+	}
+}
