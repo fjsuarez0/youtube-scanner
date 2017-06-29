@@ -140,9 +140,12 @@
 					document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
           document.getElementById('signout').disabled = false;
           document.getElementById('quickstart-account-details').textContent = JSON.stringify(user, null, '  ');
-*/
-					gapi.load()
-					// [END_EXCLUDE]
+*/        
+          gapi.client.load('youtubeAnalytics', 'v1', function() {
+            console.log("Hey Jude!")
+            console.log(getUserChannel());
+          });
+          // [END_EXCLUDE]
         } else {
           // User is signed out.
           // [START_EXCLUDE]
@@ -150,12 +153,6 @@
           document.getElementById('signout').disabled = true;
 //          document.getElementById('quickstart-account-details').textContent = 'null';
             // [END_EXCLUDE]
-          gapi.client.load('youtubeAnalytics', 'v1', function() {
-            // After both client interfaces load, use the Data API to request
-            // information about the authenticated user's channel.
-            console.log("Hey Jude!")
-            console.log(getUserChannel());
-      });
         }
       });
       // [END authstatelistener]
