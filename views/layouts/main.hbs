@@ -30,7 +30,11 @@
 	<link rel="stylesheet" href="main.css"> 
 
   <!-- Google Sign In -->
-  <script src="https://apis.google.com/js/platform.js" async defer></script>
+  <script sync defer
+					src="https://apis.google.com/js/platform.js" 
+		 			onload="this.onload=function(){};handleClientLoad()" 
+        	onreadystatechange="if (this.readyState === 'complete') this.onload()">
+	</script>
 
   <!-- Import and configure the Firebase SDK -->
   <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
@@ -52,7 +56,8 @@
 </script>
   <script type="text/javascript">
     // [START googlecallback]
-    function onSignIn(googleUser) {
+ 	var googleAuth
+	function onSignIn(googleUser) {
       console.log('Google Auth Response', googleUser);
       // We need to register an Observer on Firebase Auth to make sure auth is initialized.
       var unsubscribe = firebase.auth().onAuthStateChanged(function(firebaseUser) {
@@ -86,25 +91,34 @@
           });
           // [END authwithcred]
         } else {
-				var GoogleAuth
-					function initClient() {
-					  gapi.client.init({
-			    	  'apiKey': config.google.api_key,
-	    				'clientId':config.google.client_id,
-		  	  	  'scope': 'https://www.googleapis.com/auth/yt-analytics.readonly',
-  		  	  	'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
-					  }).then(function () {
-							GoogleAuth = gapi.auth2.getAuthInstance();
-							console.log("Hello World: "+GoogleAuth)
-				      // Listen for sign-in state changes.
-				      GoogleAuth.isSignedIn.listen(updateSigninStatus);
-					  });
-					}
+					gapi.load()
           console.log('User already signed-in Firebase.');
         }
       });
     }
-    // [END googlecallback]
+			function initClient() {
+				gapi.client.init({
+			 	 'apiKey': config.google.api_key,
+	    	 'clientId':config.google.client_id,
+		  	 'scope': 'https://www.googleapis.com/auth/yt-analytics.readonly',
+  		   'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
+				}.then(function () {
+    			googleAuth = gapi.auth2.getAuthInstance();
+		      // Listen for sign-in state changes.
+	    	  googleAuth.isSignedIn.listen(updateSigninStatus);
+	  	  	// Handle initial sign-in state. (Determine if user is already signed in.)
+  			  var user = googleAuth.currentUser.get();
+					setSigninStatus();
+	 				// Call handleAuthClick function when user clicks on
+		      //      "Sign In/Authorize" button.
+    		});
+		   }			
+
+		function handleClientLoad() {
+	    gapi.load('client:auth2', initClient);	
+		}			 
+				 
+	// [END googlecallback]
     /**
      * Check that the given Google user is equals to the given Firebase user.
      */
@@ -161,7 +175,7 @@
           // User is signed out.
           // [START_EXCLUDE]
 //          document.getElementById('quickstart-sign-in-status').textContent = 'Signed out';
-          document.getElementById('signout').disabled = true;
+          document.getElementById('signout').disabled = false;
 //          document.getElementById('quickstart-account-details').textContent = 'null';
             // [END_EXCLUDE]
         }
