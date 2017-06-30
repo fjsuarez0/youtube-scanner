@@ -31,7 +31,7 @@
 
   <!-- Google Sign In -->
   <script sync defer
-					src="https://apis.google.com/js/platform.js" 
+					src="https://apis.google.com/js/platform.js"
 		 			onload="this.onload=function(){};handleClientLoad()" 
         	onreadystatechange="if (this.readyState === 'complete') this.onload()">
 	</script>
@@ -57,6 +57,10 @@
   <script type="text/javascript">
     // [START googlecallback]
  	var googleAuth
+		function handleClientLoad() {
+	    gapi.load('client:auth2', initClient);	
+		}			 
+
 	function onSignIn(googleUser) {
       console.log('Google Auth Response', googleUser);
       // We need to register an Observer on Firebase Auth to make sure auth is initialized.
@@ -102,7 +106,7 @@
 	    	 'clientId':config.google.client_id,
 		  	 'scope': 'https://www.googleapis.com/auth/yt-analytics.readonly',
   		   'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
-				}.then(function () {
+				}).then(function () {
     			googleAuth = gapi.auth2.getAuthInstance();
 		      // Listen for sign-in state changes.
 	    	  googleAuth.isSignedIn.listen(updateSigninStatus);
@@ -114,9 +118,6 @@
     		});
 		   }			
 
-		function handleClientLoad() {
-	    gapi.load('client:auth2', initClient);	
-		}			 
 				 
 	// [END googlecallback]
     /**
