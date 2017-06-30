@@ -102,8 +102,8 @@
     }
 			function initClient() {
 				gapi.client.init({
-			 	 'apiKey': config.google.api_key,
-	    	 'clientId':config.google.client_id,
+			 	 'apiKey': configV.google.api_key,
+	    	 'clientId':configV.google.client_id,
 		  	 'scope': 'https://www.googleapis.com/auth/yt-analytics.readonly',
   		   'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
 				}).then(function () {
