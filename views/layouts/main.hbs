@@ -86,17 +86,20 @@
           });
           // [END authwithcred]
         } else {
-					gapi.client.init({
-		      'apiKey': config.google.api_key,
-    		  'clientId':config.google.client_id,
-		      'scope': config.google.scope,
-		      'discoveryDocs': config.google.discovery_docs					
-					}).then(function(){
-						googleAuth = gapi.auth2.getAuthInstance();						
-						googleAuth.isSignedIn.listen(updateSigninStatus)
-						var user = googleAuth.currentUser.get()
-						console.log(user)
-					})
+function initClient() {
+  gapi.client.init({
+      'apiKey': config.google.api_key,
+ 	   'clientId':config.google.client_id,
+      'scope': 'https://www.googleapis.com/auth/yt-analytics.readonly',
+      'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
+  }).then(function () {
+      GoogleAuth = gapi.auth2.getAuthInstance();
+
+      // Listen for sign-in state changes.
+      GoogleAuth.isSignedIn.listen(updateSigninStatus);
+  });
+}					
+
           console.log('User already signed-in Firebase.');
         }
       });
