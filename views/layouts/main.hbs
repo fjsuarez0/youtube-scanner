@@ -95,7 +95,7 @@
   		  	  	'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
 					  }).then(function () {
 							GoogleAuth = gapi.auth2.getAuthInstance();
-							console.log("Hello World: "GoogleAuth)
+							console.log("Hello World: "+GoogleAuth)
 				      // Listen for sign-in state changes.
 				      GoogleAuth.isSignedIn.listen(updateSigninStatus);
 					  });
