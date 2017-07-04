@@ -2,7 +2,16 @@
 <head>
   <meta charset=utf-8 />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!--
+
+	
+  <script sync defer
+					src="https://apis.google.com/js/platform.js"
+		 			onload="this.onload=function(){};handleClientLoad()" 
+        	onreadystatechange="if (this.readyState === 'complete') this.onload()">
+	</script>
+
+
+	<!--
     Note that Google Sign In does not work from a file URL. You will need to make
     this page available from a web server, either from localhost or using Firebase
     Hosting.
@@ -30,11 +39,6 @@
 	<link rel="stylesheet" href="main.css"> 
 
   <!-- Google Sign In -->
-  <script sync defer
-					src="https://apis.google.com/js/platform.js"
-		 			onload="this.onload=function(){};handleClientLoad()" 
-        	onreadystatechange="if (this.readyState === 'complete') this.onload()">
-	</script>
 
   <!-- Import and configure the Firebase SDK -->
   <!-- These scripts are made available when the app is served or deployed on Firebase Hosting -->
