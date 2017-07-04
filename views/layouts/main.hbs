@@ -60,7 +60,25 @@
     // [START googlecallback]
   var googleAuth
 	var channelId
-    function handleClientLoad() {
+      function initClient() {
+        gapi.client.init({
+         'apiKey': configV.google.api_key,
+         'clientId':configV.google.client_id,
+         'scope': ['https://www.googleapis.com/auth/yt-analytics.readonly', 'https://www.googleapis.com/auth/youtube.readonly'] ,
+         'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
+        }).then(function () {
+          googleAuth = gapi.auth2.getAuthInstance();
+          // Listen for sign-in state changes.
+          googleAuth.isSignedIn.listen(updateSigninStatus);
+          // Handle initial sign-in state. (Determine if user is already signed in.)
+          var user = googleAuth.currentUser.get();
+          setSigninStatus();
+          // Call handleAuthClick function when user clicks on
+          //      "Sign In/Authorize" button.
+        });
+       }      
+
+		function handleClientLoad() {
       gapi.load('client:auth2', initClient);  
     }      
 
@@ -173,23 +191,6 @@
         }
       });
     }
-      function initClient() {
-        gapi.client.init({
-         'apiKey': configV.google.api_key,
-         'clientId':configV.google.client_id,
-         'scope': ['https://www.googleapis.com/auth/yt-analytics.readonly', 'https://www.googleapis.com/auth/youtube.readonly'] ,
-         'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest']
-        }).then(function () {
-          googleAuth = gapi.auth2.getAuthInstance();
-          // Listen for sign-in state changes.
-          googleAuth.isSignedIn.listen(updateSigninStatus);
-          // Handle initial sign-in state. (Determine if user is already signed in.)
-          var user = googleAuth.currentUser.get();
-          setSigninStatus();
-          // Call handleAuthClick function when user clicks on
-          //      "Sign In/Authorize" button.
-        });
-       }      
 
          
   // [END googlecallback]
