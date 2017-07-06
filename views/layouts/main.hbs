@@ -108,7 +108,7 @@
 
     request.execute(function(response) {
       if ('error' in response) {
-        displayMessage(response.error.message);
+        console.log(response.error.message);
       } else {
         // We need the channel's channel ID to make calls to the Analytics API.
         // The channel ID value has the form "UCdLFeWKpkLhkguiMZUp8lWA".
@@ -225,7 +225,6 @@
       document.getElementById('signout').addEventListener('click', handleSignOut, false);
     }
     window.onload = function() {
-      initApp();
 			loadAPIClientInterfaces()
     };
   </script>

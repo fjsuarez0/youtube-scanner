@@ -17,26 +17,23 @@
 //console.log(gapi)
 //							
 //
-	var apiKeyValue =	 "AIzaSyByEs52_P--XiS4yKtX_QRfgMiEXjHNb8U" 
+var apiKeyValue =	 "AIzaSyByEs52_P--XiS4yKtX_QRfgMiEXjHNb8U" 
 var	discoveryDocsValue = "https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest"
 var	clientIdValue = "122389199276-ut2naq56p7gnf14qrjlsml5mhbs5djm5.apps.googleusercontent.com"
 var	scopesValue =  ["https://www.googleapis.com/auth/youtube.readonly", "https://www.googleapis.com/auth/yt-analytics.readonly"]
 var url = "AIzaSyByEs52_P--XiS4yKtX_QRfgMiEXjHNb8U"
+/*
 function start() {
-  // 2. Initialize the JavaScript client library.
 
 	console.log(config.google.scope)
 	gapi.client.init({
     'apiKey': apiKeyValue,
-    // Your API key will be automatically added to the Discovery Document URLs.
+
     'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtubeAnalytics/v1/rest'],
-    // clientId and scope are optional if auth is not required.
+
     'clientId': '122389199276-ut2naq56p7gnf14qrjlsml5mhbs5djm5.apps.googleusercontent.com',
     'scope': config.google.scope,
   }).then(function() {
-    // 3. Initialize and make the API request.
-	console.log(gapi.client)
-	console.log("Hello W0rld")
 	}).then(function(response) {
     console.log(response.result);
   }, function(reason, a) {
@@ -44,8 +41,7 @@ function start() {
 		console.log(a)
   });
 };
-//console.log(gapi.client)
-
+*/
 /*
 function start(){
 	gapi.client.init({
@@ -63,8 +59,9 @@ function start(){
 /*
  *
  * 	scopes: "https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/yt-analytics.readonly"
-*/
-gapi.load("client:auth2", start)
+*/ 
+
+gapi.load("client:auth2", initApp)
 
 
     function onSignIn(googleUser) {
