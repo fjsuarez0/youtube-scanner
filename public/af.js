@@ -124,17 +124,14 @@ function start(){
 
 //		var googleAuth = gapi.auth2.getAuthInstance();
 
-		function handleSignOut() {
+    function handleSignOut() {
       var googleAuth = gapi.auth2.getAuthInstance();
-			if(!googleAuth){
-				console.log("usuario pelao")
-			}
-			googleAuth.signOut().then(function() {
-        firebase.auth().signOut().then(function(){
-					location.reload()
-				})
+      googleAuth.signOut().then(function() {
+        firebase.auth().signOut();
       });
     }
+    }
+
 
 
 function initApp() {
