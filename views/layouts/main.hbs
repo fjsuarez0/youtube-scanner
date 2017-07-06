@@ -117,43 +117,6 @@
     });
   }
 
-  function displayVideoAnalytics(videoId) {
-    if (channelId) {
-      // To use a different date range, modify the ONE_MONTH_IN_MILLISECONDS
-      // variable to a different millisecond delta as desired.
-      var today = new Date();
-      var lastMonth = new Date(today.getTime() - ONE_MONTH_IN_MILLISECONDS);
-
-      var request = gapi.client.youtubeAnalytics.reports.query({
-        // The start-date and end-date parameters must be YYYY-MM-DD strings.
-        'start-date': formatDateString(lastMonth),
-        'end-date': formatDateString(today),
-        // At this time, you need to explicitly specify channel==channelId.
-        // See https://developers.google.com/youtube/analytics/v1/#ids
-        ids: 'channel==' + channelId,
-        dimensions: 'day',
-        sort: 'day',
-        // See https://developers.google.com/youtube/analytics/v1/available_reports
-        // for details about the different filters and metrics you can request
-        // if the "dimensions" parameter value is "day".
-        metrics: 'views',
-        filters: 'video==' + videoId
-      });
-
-      request.execute(function(response) {
-        // This function is called regardless of whether the request succeeds.
-        // The response contains YouTube Analytics data or an error message.
-        if ('error' in response) {
-          displayMessage(response.error.message);
-        } else {
-          console.log(response);
-        }
-      });
-    } else {
-      // The currently authenticated user's channel ID is not available.
-      console.log('The YouTube channel ID for the current user is not available.');
-    }
-  }
 
 
   function onSignIn(googleUser) {
