@@ -61,9 +61,6 @@ function start(){
  * 	scopes: "https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/yt-analytics.readonly"
 */ 
 
-gapi.load("client:auth2", initApp)
-
-
     function onSignIn(googleUser) {
       console.log('Google Auth Response', googleUser);
       // We need to register an Observer on Firebase Auth to make sure auth is initialized.
