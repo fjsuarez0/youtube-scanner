@@ -9,7 +9,7 @@
 		 			onload="this.onload=function(){};handleClientLoad()" 
         	onreadystatechange="if (this.readyState === 'complete') this.onload()">
 	</script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/core.js"></script>
+
 
 	<!--
     Note that Google Sign In does not work from a file URL. You will need to make
@@ -108,7 +108,7 @@
 
     request.execute(function(response) {
       if ('error' in response) {
-        console.log(response.error.message);
+        displayMessage(response.error.message);
       } else {
         // We need the channel's channel ID to make calls to the Analytics API.
         // The channel ID value has the form "UCdLFeWKpkLhkguiMZUp8lWA".
@@ -205,6 +205,8 @@
           var isAnonymous = user.isAnonymous;
           var uid = user.uid;
           var providerData = user.providerData;
+          document.getElementById('name').textContent = user.displayName;       
+
           // [START_EXCLUDE]
 /*
           document.getElementById('quickstart-sign-in-status').textContent = 'Signed in';
@@ -225,6 +227,7 @@
       document.getElementById('signout').addEventListener('click', handleSignOut, false);
     }
     window.onload = function() {
+      initApp();
 			loadAPIClientInterfaces()
     };
   </script>
