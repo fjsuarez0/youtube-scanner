@@ -228,8 +228,8 @@
       document.getElementById('signout').addEventListener('click', handleSignOut, false);
     }
     window.onload = function() {
+      handleClientLoad();
       initApp();
-      initClient();
 			loadAPIClientInterfaces();
     };
   </script>
